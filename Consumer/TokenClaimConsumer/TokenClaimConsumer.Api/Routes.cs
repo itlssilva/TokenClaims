@@ -35,9 +35,14 @@ public static class Routes
                     AllClaims = userClaims
                 });
             })
-            .RequireAuthorization();
+            .RequireAuthorization("RequireAdminClaim")
+            .ProducesProblem(StatusCodes.Status403Forbidden);
 
         app.MapGet("/NoClaims", () => "EndPoint sem autenticação necessária");
+
+        app.MapGet("/OnlyOperator",  () => "Operator autenticado")
+            .RequireAuthorization("RequireOperatorClaim")
+            .ProducesProblem(StatusCodes.Status403Forbidden);
 
         return app;
     }
