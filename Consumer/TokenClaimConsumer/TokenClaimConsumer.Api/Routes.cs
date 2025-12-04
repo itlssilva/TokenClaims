@@ -38,11 +38,13 @@ public static class Routes
             .RequireAuthorization("RequireAdminClaim")
             .ProducesProblem(StatusCodes.Status403Forbidden);
 
-        app.MapGet("/NoClaims", () => "EndPoint sem autenticação necessária");
+        app.MapGet("/NoClaims", () => Results.Ok("EndPoint sem autenticação necessária"));
 
-        app.MapGet("/OnlyOperator",  () => "Operator autenticado")
-            .RequireAuthorization("RequireOperatorClaim")
-            .ProducesProblem(StatusCodes.Status403Forbidden);
+        app.MapGet("/OnlyOperator", () => Results.Ok("Operator autenticado"))
+            .RequireAuthorization("RequireOperatorClaim");
+
+        app.MapGet("/All", () => Results.Ok("Admin/Operator autenticado"))
+            .RequireAuthorization("RequireAdminOrOperator");
 
         return app;
     }
