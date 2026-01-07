@@ -22,7 +22,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             // Estes valores devem corresponder aos utilizados na Aplicação que emitiu o JWT
             ValidIssuer = "TokenClaimProvider",
             ValidAudience = "TokenClaimConsumer",
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("CRIAR_CHAVE_SECRETA_MUITO_LONGA_AQUI"))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("8028BBF51A3C4A362456A4BF8CB1E532201511279CA5FC6E2ECD6CA6936EA13E"))
         };
     });
 

@@ -7,7 +7,7 @@ namespace TokenClaimProvider.Api;
 
 public class GenerateToken : IGenerateToken
 {
-    private const string SecretKey = "CRIAR_CHAVE_SECRETA_MUITO_LONGA_AQUI";
+    private const string SecretKey = "8028BBF51A3C4A362456A4BF8CB1E532201511279CA5FC6E2ECD6CA6936EA13E";
     private const string Issuer = "TokenClaimProvider";
     private const string Audience = "TokenClaimConsumer";
 
