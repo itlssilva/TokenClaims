@@ -1,11 +1,22 @@
 services:
-  app:
+  provider:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.provider
     ports:
-      - "8080:8080" # Consumer App
-      - "8081:8081" # Generate App
-    volumes:
-      - ./Consumer/TokenClaimConsumer/TokenClaimConsumer.Api:/app/consumer
-      - ./Generate/TokenClaimProvider/TokenClaimProvider.Api:/app/generate
+      - "5295:5295"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5295
+
+  consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consumer
+    ports:
+      - "5127:5127"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5127
+    depends_on:
+      - provider

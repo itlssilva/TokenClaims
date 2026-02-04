@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddTransient<IGenerateToken,  GenerateToken>();
+builder.Services.AddTransient<IGenerateToken, GenerateToken>();
 
 var app = builder.Build();
 
@@ -15,8 +15,6 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
-app.UseHttpsRedirection();
 
 app.MapPost("/login/{userName}", (IGenerateToken generateToken, string userName) =>
 {
